@@ -142,40 +142,4 @@
         requestAnimationFrame(step);
     }
 
-    // --- Hero typing effect ---
-    var typingEl = document.querySelector('.typing-text');
-    if (typingEl) {
-        var words = ['il lavoro', 'la scuola', 'il futuro', 'la tua carriera'];
-        var wordIndex = 0;
-        var charIndex = 0;
-        var isDeleting = false;
-        var typeSpeed = 80;
-
-        function typeLoop() {
-            var current = words[wordIndex];
-
-            if (isDeleting) {
-                typingEl.textContent = current.substring(0, charIndex - 1);
-                charIndex--;
-                typeSpeed = 40;
-            } else {
-                typingEl.textContent = current.substring(0, charIndex + 1);
-                charIndex++;
-                typeSpeed = 80;
-            }
-
-            if (!isDeleting && charIndex === current.length) {
-                typeSpeed = 2000; // pausa
-                isDeleting = true;
-            } else if (isDeleting && charIndex === 0) {
-                isDeleting = false;
-                wordIndex = (wordIndex + 1) % words.length;
-                typeSpeed = 400;
-            }
-
-            setTimeout(typeLoop, typeSpeed);
-        }
-
-        setTimeout(typeLoop, 1000);
-    }
 })();
