@@ -675,17 +675,19 @@ section {
 }
 
 .team-avatar {
-    width: 72px;
-    height: 72px;
-    background: var(--gradient);
+    width: 88px;
+    height: 88px;
     border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.4rem;
-    font-weight: 700;
-    color: #fff;
     margin: 0 auto 16px;
+    object-fit: cover;
+    border: 3px solid var(--border);
+    background: var(--accent-light);
+    transition: border-color 0.3s, transform 0.3s;
+}
+
+.team-member:hover .team-avatar {
+    border-color: var(--accent);
+    transform: scale(1.05);
 }
 
 .team-member h4 {
