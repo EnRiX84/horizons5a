@@ -678,19 +678,23 @@ section {
 }
 
 .team-avatar {
-    width: 88px;
-    height: 88px;
+    width: 110px;
+    height: 110px;
     border-radius: 50%;
     margin: 0 auto 16px;
     object-fit: cover;
+    object-position: center top;
     border: 3px solid var(--border);
     background: var(--accent-light);
-    transition: border-color 0.3s, transform 0.3s;
+    filter: saturate(0.85) contrast(1.1) brightness(1.05);
+    transition: all 0.4s ease;
 }
 
 .team-member:hover .team-avatar {
     border-color: var(--accent);
-    transform: scale(1.05);
+    transform: scale(1.08);
+    filter: saturate(1) contrast(1) brightness(1);
+    box-shadow: 0 8px 24px rgba(79, 70, 229, 0.2);
 }
 
 .team-member h4 {
@@ -738,15 +742,17 @@ section {
 }
 
 .supervisor-card .team-avatar {
-    width: 120px;
-    height: 120px;
+    width: 130px;
+    height: 130px;
     flex-shrink: 0;
     margin: 0;
 }
 
 .supervisor-card:hover .team-avatar {
     border-color: var(--accent);
-    transform: scale(1.05);
+    transform: scale(1.08);
+    filter: saturate(1) contrast(1) brightness(1);
+    box-shadow: 0 8px 24px rgba(79, 70, 229, 0.2);
 }
 
 .supervisor-info {
