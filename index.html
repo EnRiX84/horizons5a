@@ -17,8 +17,6 @@
                 <li><a href="index.html">Home</a></li>
                 <li><a href="pages/ai-lavoro.html">AI & Lavoro</a></li>
                 <li><a href="pages/cybersecurity.html">Cybersecurity</a></li>
-                <li><a href="pages/cloud-devops.html">Cloud & DevOps</a></li>
-                <li><a href="pages/data-sviluppo.html">Data & Sviluppo</a></li>
                 <li><a href="pages/il-progetto.html">Il Progetto</a></li>
                 <li><button class="theme-toggle" aria-label="Cambia tema"></button></li>
             </ul>
@@ -32,93 +30,125 @@
 
     <!-- Hero -->
     <section class="hero">
+        <div class="hero-grid"></div>
+        <div class="hero-orb hero-orb--1"></div>
+        <div class="hero-orb hero-orb--2"></div>
+        <div class="hero-orb hero-orb--3"></div>
+
         <div class="hero-content">
-            <h1>Il futuro del lavoro<br>inizia da <span>qui</span></h1>
-            <p class="hero-subtitle">Dove la tecnologia incontra il futuro del lavoro</p>
-            <a href="#sezioni" class="hero-cta">Esplora le sezioni &darr;</a>
+            <div class="hero-eyebrow">5A SIA &bull; IISS Saetta e Livatino</div>
+            <h1>La tecnologia<br>sta cambiando<br><span class="gradient-text typing-text">il lavoro</span></h1>
+            <p class="hero-subtitle">Dove la tecnologia incontra il futuro del lavoro. Un viaggio tra intelligenza artificiale, cybersecurity e le competenze che definiranno le professioni di domani.</p>
+            <div class="hero-buttons">
+                <a href="#sezioni" class="btn btn-primary">Esplora le sezioni &darr;</a>
+                <a href="pages/il-progetto.html" class="btn btn-ghost">Chi siamo</a>
+            </div>
+        </div>
+
+        <div class="hero-scroll">
+            <span></span>
         </div>
     </section>
+
+    <!-- Stats Bar -->
+    <div class="stats-bar">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item fade-in">
+                    <h3 data-count="85" data-suffix="%">0%</h3>
+                    <p>delle aziende usera' AI entro il 2027</p>
+                </div>
+                <div class="stat-item fade-in fade-in-delay-1">
+                    <h3 data-count="3" data-suffix="M">0M</h3>
+                    <p>posti vacanti in cybersecurity nel mondo</p>
+                </div>
+                <div class="stat-item fade-in fade-in-delay-2">
+                    <h3 data-count="40" data-suffix="%">0%</h3>
+                    <p>dei lavori attuali sara' trasformato dall'AI</p>
+                </div>
+                <div class="stat-item fade-in fade-in-delay-3">
+                    <h3 data-count="97" data-suffix="%">0%</h3>
+                    <p>dei datori di lavoro cerca competenze digitali</p>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Sezioni -->
     <section id="sezioni">
         <div class="container">
             <div class="section-header fade-in">
                 <span class="section-tag">Esplora</span>
-                <h2>Le tecnologie che stanno cambiando tutto</h2>
-                <p>Ogni sezione approfondisce un'area tecnologica chiave e il suo impatto sulle professioni del futuro.</p>
+                <h2>Due mondi, un unico futuro</h2>
+                <p>L'intelligenza artificiale e la sicurezza informatica sono le due forze che stanno ridefinendo ogni settore professionale.</p>
             </div>
 
-            <div class="card-grid">
-                <div class="card fade-in">
-                    <div class="card-icon">&#129302;</div>
+            <div class="features-grid">
+                <a href="pages/ai-lavoro.html" class="feature-card fade-in">
+                    <div class="feature-icon">&#129302;</div>
                     <h3>AI & Lavoro</h3>
-                    <p>Intelligenza artificiale generativa, automazione dei processi e le nuove competenze richieste dal mercato.</p>
-                    <a href="pages/ai-lavoro.html" class="card-link">Scopri di piu'</a>
-                </div>
+                    <p>L'intelligenza artificiale generativa non sostituisce le persone: le potenzia. Scopri come ChatGPT, Claude e gli altri strumenti stanno creando nuove professioni e trasformando quelle esistenti.</p>
+                    <div class="feature-link">Esplora la sezione <span>&rarr;</span></div>
+                </a>
 
-                <div class="card fade-in">
-                    <div class="card-icon">&#128274;</div>
+                <a href="pages/cybersecurity.html" class="feature-card fade-in fade-in-delay-1">
+                    <div class="feature-icon">&#128274;</div>
                     <h3>Cybersecurity</h3>
-                    <p>Minacce informatiche, difesa dei dati, certificazioni e le figure professionali piu' ricercate.</p>
-                    <a href="pages/cybersecurity.html" class="card-link">Scopri di piu'</a>
-                </div>
+                    <p>Ogni 39 secondi avviene un attacco informatico nel mondo. La domanda di esperti di sicurezza e' in crescita esponenziale. Scopri le minacce, le difese e le carriere in questo settore critico.</p>
+                    <div class="feature-link">Esplora la sezione <span>&rarr;</span></div>
+                </a>
+            </div>
+        </div>
+    </section>
 
-                <div class="card fade-in">
-                    <div class="card-icon">&#9729;&#65039;</div>
-                    <h3>Cloud & DevOps</h3>
-                    <p>Infrastrutture cloud, containerizzazione, CI/CD e come le aziende gestiscono il software oggi.</p>
-                    <a href="pages/cloud-devops.html" class="card-link">Scopri di piu'</a>
-                </div>
-
-                <div class="card fade-in">
-                    <div class="card-icon">&#128202;</div>
-                    <h3>Data & Sviluppo</h3>
-                    <p>Data analysis, sviluppo full-stack, linguaggi piu' richiesti e panoramica sugli stipendi nel settore.</p>
-                    <a href="pages/data-sviluppo.html" class="card-link">Scopri di piu'</a>
+    <!-- CTA / Quote -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="fade-in">
+                <h2 style="color: #fff;">&ldquo;Il miglior modo di predire il futuro<br>e' inventarlo.&rdquo;</h2>
+                <p>Alan Kay, pioniere dell'informatica</p>
+                <div style="margin-top: 40px;">
+                    <a href="pages/il-progetto.html" class="btn btn-primary">Scopri il nostro progetto &rarr;</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Chi Siamo (breve) -->
-    <section style="background: var(--bg-secondary);">
+    <!-- Team -->
+    <section>
         <div class="container">
             <div class="section-header fade-in">
                 <span class="section-tag">Il Team</span>
-                <h2>Chi siamo</h2>
+                <h2>Chi c'e' dietro Horizons5A</h2>
                 <p>Studenti della 5A SIA dell'IISS Giudici Saetta e Livatino, guidati dal Prof. Enrico Maria Caruso.</p>
             </div>
 
-            <div class="team-grid fade-in">
-                <div class="team-member">
+            <div class="team-grid">
+                <div class="team-member fade-in">
                     <div class="team-avatar">ED</div>
                     <h4>Elisa Di Liberto</h4>
                     <p>Studentessa 5A SIA</p>
                 </div>
-                <div class="team-member">
+                <div class="team-member fade-in fade-in-delay-1">
                     <div class="team-avatar">MG</div>
                     <h4>Maria Cristina Gallo</h4>
                     <p>Studentessa 5A SIA</p>
                 </div>
-                <div class="team-member">
+                <div class="team-member fade-in fade-in-delay-2">
                     <div class="team-avatar">VG</div>
                     <h4>Vincenzo Gaziano</h4>
                     <p>Studente 5A SIA</p>
                 </div>
-                <div class="team-member">
+                <div class="team-member fade-in fade-in-delay-1">
                     <div class="team-avatar">AL</div>
                     <h4>Angelo La Mendola</h4>
                     <p>Studente 5A SIA</p>
                 </div>
-                <div class="team-member">
+                <div class="team-member fade-in fade-in-delay-2">
                     <div class="team-avatar">DG</div>
                     <h4>Domenico Giordano</h4>
                     <p>Studente 5A SIA</p>
                 </div>
-            </div>
-
-            <div style="text-align:center; margin-top: 32px;" class="fade-in">
-                <a href="pages/il-progetto.html" class="hero-cta" style="font-size:0.9rem; padding:12px 28px;">Scopri il progetto &rarr;</a>
             </div>
         </div>
     </section>
@@ -128,8 +158,6 @@
         <ul class="footer-links">
             <li><a href="pages/ai-lavoro.html">AI & Lavoro</a></li>
             <li><a href="pages/cybersecurity.html">Cybersecurity</a></li>
-            <li><a href="pages/cloud-devops.html">Cloud & DevOps</a></li>
-            <li><a href="pages/data-sviluppo.html">Data & Sviluppo</a></li>
             <li><a href="pages/il-progetto.html">Il Progetto</a></li>
         </ul>
         <p>&copy; 2026 Horizons5A &mdash; 5A SIA, IISS Giudici Saetta e Livatino</p>

@@ -1,6 +1,6 @@
 /* ============================================================
    Horizons5A — JavaScript
-   Navbar, Dark Mode, Scroll Animations
+   Navbar, Dark Mode, Scroll Animations, Counter
    ============================================================ */
 
 (function () {
@@ -57,7 +57,6 @@
             navLinks.classList.toggle('open');
         });
 
-        // Chiudi menu al click su un link
         navLinks.querySelectorAll('a').forEach(function (link) {
             link.addEventListener('click', function () {
                 hamburger.classList.remove('active');
@@ -69,8 +68,10 @@
     // --- Active nav link ---
     var currentPage = window.location.pathname.split('/').pop() || 'index.html';
     document.querySelectorAll('.nav-links a').forEach(function (link) {
-        var href = link.getAttribute('href').split('/').pop();
-        if (href === currentPage) {
+        var href = link.getAttribute('href');
+        if (!href) return;
+        var hrefPage = href.split('/').pop();
+        if (hrefPage === currentPage) {
             link.classList.add('active');
         }
     });
@@ -95,9 +96,86 @@
             observer.observe(el);
         });
     } else {
-        // Fallback: mostra tutto senza animazione
         fadeElements.forEach(function (el) {
             el.classList.add('visible');
         });
+    }
+
+    // --- Animated counters ---
+    var counters = document.querySelectorAll('[data-count]');
+
+    if (counters.length > 0 && 'IntersectionObserver' in window) {
+        var counterObserver = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                    animateCounter(entry.target);
+                    counterObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.3 });
+
+        counters.forEach(function (el) {
+            counterObserver.observe(el);
+        });
+    }
+
+    function animateCounter(el) {
+        var target = parseInt(el.getAttribute('data-count'), 10);
+        var suffix = el.getAttribute('data-suffix') || '';
+        var duration = 2000;
+        var start = 0;
+        var startTime = null;
+
+        function step(timestamp) {
+            if (!startTime) startTime = timestamp;
+            var progress = Math.min((timestamp - startTime) / duration, 1);
+            var eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
+            var current = Math.floor(eased * target);
+            el.textContent = current + suffix;
+            if (progress < 1) {
+                requestAnimationFrame(step);
+            } else {
+                el.textContent = target + suffix;
+            }
+        }
+
+        requestAnimationFrame(step);
+    }
+
+    // --- Hero typing effect ---
+    var typingEl = document.querySelector('.typing-text');
+    if (typingEl) {
+        var words = ['il lavoro', 'la scuola', 'il futuro', 'la tua carriera'];
+        var wordIndex = 0;
+        var charIndex = 0;
+        var isDeleting = false;
+        var typeSpeed = 80;
+
+        function typeLoop() {
+            var current = words[wordIndex];
+
+            if (isDeleting) {
+                typingEl.textContent = current.substring(0, charIndex - 1);
+                charIndex--;
+                typeSpeed = 40;
+            } else {
+                typingEl.textContent = current.substring(0, charIndex + 1);
+                charIndex++;
+                typeSpeed = 80;
+            }
+
+            if (!isDeleting && charIndex === current.length) {
+                typeSpeed = 2000; // pausa
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                wordIndex = (wordIndex + 1) % words.length;
+                typeSpeed = 400;
+            }
+
+            setTimeout(typeLoop, typeSpeed);
+        }
+
+        setTimeout(typeLoop, 1000);
     }
 })();
