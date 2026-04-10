@@ -199,6 +199,9 @@
         var slidesPerView = 3;
         var totalPages = 1;
         var gap = 28;
+        var autoplayInterval = null;
+        var autoplayDelay = 4500;
+        var isPaused = false;
 
         function computeSlidesPerView() {
             var w = window.innerWidth;
@@ -229,13 +232,34 @@
             Array.prototype.forEach.call(dotsWrap.children, function (dot, i) {
                 dot.classList.toggle('active', i === currentPage);
             });
-            prevBtn.disabled = currentPage === 0;
-            nextBtn.disabled = currentPage >= totalPages - 1;
+        }
+
+        function nextAuto() {
+            if (totalPages <= 1) return;
+            currentPage = (currentPage + 1) % totalPages;
+            render();
+        }
+
+        function startAutoplay() {
+            stopAutoplay();
+            if (totalPages <= 1) return;
+            autoplayInterval = setInterval(function () {
+                if (!isPaused) nextAuto();
+            }, autoplayDelay);
+        }
+
+        function stopAutoplay() {
+            if (autoplayInterval) {
+                clearInterval(autoplayInterval);
+                autoplayInterval = null;
+            }
         }
 
         function goTo(page) {
-            currentPage = Math.max(0, Math.min(totalPages - 1, page));
+            if (totalPages <= 1) { currentPage = 0; render(); return; }
+            currentPage = ((page % totalPages) + totalPages) % totalPages;
             render();
+            startAutoplay();
         }
 
         function update() {
@@ -244,10 +268,20 @@
             if (currentPage >= totalPages) currentPage = totalPages - 1;
             buildDots();
             render();
+            startAutoplay();
         }
 
         prevBtn.addEventListener('click', function () { goTo(currentPage - 1); });
         nextBtn.addEventListener('click', function () { goTo(currentPage + 1); });
+
+        // Pause on hover / focus / tab hidden
+        root.addEventListener('mouseenter', function () { isPaused = true; });
+        root.addEventListener('mouseleave', function () { isPaused = false; });
+        root.addEventListener('focusin', function () { isPaused = true; });
+        root.addEventListener('focusout', function () { isPaused = false; });
+        document.addEventListener('visibilitychange', function () {
+            isPaused = document.hidden;
+        });
 
         // Touch swipe
         var startX = 0, startY = 0, isDown = false;

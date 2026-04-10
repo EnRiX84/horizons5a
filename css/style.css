@@ -757,6 +757,8 @@ section {
 
 .supervisor-info {
     text-align: left;
+    flex: 1;
+    min-width: 0;
 }
 
 .supervisor-info h3 {
@@ -778,7 +780,9 @@ section {
     font-size: 0.95rem;
     color: var(--text-secondary);
     line-height: 1.7;
-    max-width: 540px;
+    text-align: justify;
+    hyphens: auto;
+    -webkit-hyphens: auto;
 }
 
 .supervisor-links {
