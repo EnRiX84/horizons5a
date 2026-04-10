@@ -1127,3 +1127,123 @@ section {
         grid-template-columns: 1fr;
     }
 }
+
+/* ============================================================
+   Team Carousel
+   ============================================================ */
+.team-carousel {
+    position: relative;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 56px;
+}
+
+.team-carousel-viewport {
+    overflow: hidden;
+    padding: 12px 2px 20px;
+}
+
+.team-carousel-track {
+    display: flex;
+    gap: 28px;
+    transition: transform 0.55s cubic-bezier(0.25, 0.8, 0.25, 1);
+    will-change: transform;
+}
+
+.team-carousel-track .team-member {
+    flex: 0 0 calc((100% - 56px) / 3);
+    min-width: 0;
+}
+
+.team-carousel-btn {
+    position: absolute;
+    top: calc(50% - 22px);
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    background: var(--bg-card);
+    color: var(--text-primary);
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.25s ease;
+    box-shadow: var(--shadow-md);
+    padding: 0;
+}
+
+.team-carousel-btn:hover:not(:disabled) {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+    transform: translateY(-50%) scale(1.05);
+}
+
+.team-carousel-btn:disabled {
+    opacity: 0.3;
+    cursor: default;
+}
+
+.team-carousel-prev {
+    left: 0;
+}
+
+.team-carousel-next {
+    right: 0;
+}
+
+.team-carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 24px;
+}
+
+.team-carousel-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: none;
+    background: var(--border);
+    cursor: pointer;
+    transition: all 0.25s ease;
+    padding: 0;
+}
+
+.team-carousel-dot:hover {
+    background: var(--text-muted);
+}
+
+.team-carousel-dot.active {
+    background: var(--accent);
+    transform: scale(1.35);
+}
+
+@media (max-width: 968px) {
+    .team-carousel {
+        padding: 0 48px;
+    }
+    .team-carousel-track .team-member {
+        flex: 0 0 calc((100% - 28px) / 2);
+    }
+}
+
+@media (max-width: 640px) {
+    .team-carousel {
+        padding: 0 44px;
+    }
+    .team-carousel-track .team-member {
+        flex: 0 0 100%;
+    }
+    .team-carousel-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1.3rem;
+    }
+}

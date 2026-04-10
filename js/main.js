@@ -186,4 +186,100 @@
         });
     }
 
+    // --- Team Carousel ---
+    var carousels = document.querySelectorAll('[data-carousel]');
+    carousels.forEach(function (root) {
+        var viewport = root.querySelector('.team-carousel-viewport');
+        var track = root.querySelector('.team-carousel-track');
+        var slides = track.children;
+        var prevBtn = root.querySelector('.team-carousel-prev');
+        var nextBtn = root.querySelector('.team-carousel-next');
+        var dotsWrap = root.querySelector('.team-carousel-dots');
+        var currentPage = 0;
+        var slidesPerView = 3;
+        var totalPages = 1;
+        var gap = 28;
+
+        function computeSlidesPerView() {
+            var w = window.innerWidth;
+            if (w <= 640) return 1;
+            if (w <= 968) return 2;
+            return 3;
+        }
+
+        function buildDots() {
+            dotsWrap.innerHTML = '';
+            for (var i = 0; i < totalPages; i++) {
+                var d = document.createElement('button');
+                d.className = 'team-carousel-dot';
+                d.type = 'button';
+                d.setAttribute('aria-label', 'Vai a pagina ' + (i + 1));
+                d.dataset.page = i;
+                d.addEventListener('click', function (e) {
+                    goTo(parseInt(e.currentTarget.dataset.page, 10));
+                });
+                dotsWrap.appendChild(d);
+            }
+        }
+
+        function render() {
+            var viewportW = viewport.clientWidth;
+            var offset = currentPage * (viewportW + gap);
+            track.style.transform = 'translateX(' + (-offset) + 'px)';
+            Array.prototype.forEach.call(dotsWrap.children, function (dot, i) {
+                dot.classList.toggle('active', i === currentPage);
+            });
+            prevBtn.disabled = currentPage === 0;
+            nextBtn.disabled = currentPage >= totalPages - 1;
+        }
+
+        function goTo(page) {
+            currentPage = Math.max(0, Math.min(totalPages - 1, page));
+            render();
+        }
+
+        function update() {
+            slidesPerView = computeSlidesPerView();
+            totalPages = Math.max(1, Math.ceil(slides.length / slidesPerView));
+            if (currentPage >= totalPages) currentPage = totalPages - 1;
+            buildDots();
+            render();
+        }
+
+        prevBtn.addEventListener('click', function () { goTo(currentPage - 1); });
+        nextBtn.addEventListener('click', function () { goTo(currentPage + 1); });
+
+        // Touch swipe
+        var startX = 0, startY = 0, isDown = false;
+        track.addEventListener('touchstart', function (e) {
+            startX = e.touches[0].clientX;
+            startY = e.touches[0].clientY;
+            isDown = true;
+        }, { passive: true });
+        track.addEventListener('touchend', function (e) {
+            if (!isDown) return;
+            isDown = false;
+            var dx = e.changedTouches[0].clientX - startX;
+            var dy = e.changedTouches[0].clientY - startY;
+            if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) {
+                if (dx < 0) goTo(currentPage + 1);
+                else goTo(currentPage - 1);
+            }
+        }, { passive: true });
+
+        // Keyboard navigation
+        root.addEventListener('keydown', function (e) {
+            if (e.key === 'ArrowLeft') { goTo(currentPage - 1); }
+            else if (e.key === 'ArrowRight') { goTo(currentPage + 1); }
+        });
+
+        var resizeTimer;
+        window.addEventListener('resize', function () {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(update, 150);
+        });
+
+        update();
+    });
+
 })();
