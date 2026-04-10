@@ -1167,9 +1167,6 @@ section {
     line-height: 1.8;
     color: var(--text-secondary);
     margin-bottom: 18px;
-    text-align: justify;
-    hyphens: auto;
-    -webkit-hyphens: auto;
 }
 
 .teacher-message p:last-of-type {
